@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='main.css')}}">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+        crossorigin="anonymous"></script>
+
+    {% if title %}
+    <title>Bloggers Space-{{title}}</title>
+    {%else%}
+    <title>Bloggers Space</title>
+    {% endif %}
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top mb-0">
+            <div class="container">
+                <a class="navbar-brand mr-4" href="/">Bloggers Space</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
+                    aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                    <div class="navbar-nav mr-auto">
+                        <a class="nav-item nav-link" href="{{url_for('home')}}">Home</a>
+                        <a class="nav-item nav-link" href="{{url_for('about')}}">About</a>
+                    </div>
+                    <!-- Navbar Right Side -->
+                    <div class="navbar-nav">
+                        {% if current_user.is_authenticated %}
+                        <a class="nav-item nav-link" href="{{url_for('new_post')}}">New Post</a>
+                        <a class="nav-item nav-link" href="{{url_for('account')}}">Account</a>
+                        <a class="nav-item nav-link" href="{{url_for('logout')}}">Logout</a>
+                        {% else %}
+                        <a class="nav-item nav-link" href="{{url_for('login')}}">Login</a>
+                        <a class="nav-item nav-link" href="{{url_for('register')}}">Register</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container-fluid px-0">
+        <div id="carouselExampleSlidesOnly" class="carousel slide " data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="\static\img\img2.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="\static\img\img4.jpg" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="\static\img\img1.jpg" class="d-block w-100" alt="...">
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="container">
+        <h1 class="animate__animated animate__bounceInLeft" style="text-align: center; font-size: 400%; ">
+            About Us
+        </h1>
+        <P class="animate__animated animate__bounceInRight" style=" text-align: center; font-size: 170%;">
+            
+                Bloggers Space is a blogging web app. Where you can write your ideas 
+                and thoughts. Here anyone can publish any kind of information which can be shared over the internet.
+                If you spend much time browsing the Web, you've probably read a blog post before, even if you didn't realize it at the time. 
+                Some of the most-read blogs are a bit like online magazines because they're written by some people.
+                
+            </P>
+            
+        
+        
+        <h2 style="font-size: 400%; color: #333333; text-align: center;"><pre style="color: #333333">
+            
+Conatct information:
+</pre>
+        </h2>
+        <p style="font-size: 170%; text-align: center;"><pre style="font-size: 170%; color: #444444;">
+
+Phone No. (+91) 9034161044
+WhatsApp 9034161044
+Email: sharmarajat575@gmail.com
+        </pre>
+        </p>
+    </div>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% with messages=get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{category}}">
+                    {{message}}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+            </div>
+    </main>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+  -->
+</body>
+
+</html>
